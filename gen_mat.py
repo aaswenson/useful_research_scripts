@@ -5,6 +5,7 @@ Following function is included in this script.
   * build_pyne_matlib
   * print_mcnp_mat
 """
+import pyperclip
 import sys
 import os
 
@@ -65,6 +66,9 @@ def print_mcnp_mat(mat, atom):
     matstring = matlib[mat].expand_elements().mcnp(frac_type=frac)
     # print the string
     print(matstring)
+    # copy to system clipboard
+    pyperclip.copy(matstring)
+    print('Material string successfully copied to clipboard!')
 
 
 if __name__=="__main__":
