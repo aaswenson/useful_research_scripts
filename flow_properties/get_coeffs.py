@@ -1,6 +1,7 @@
 from thermo.chemical import Chemical
 from numpy import polyfit, arange
 import argparse
+import matplotlib.pyplot as plt
 
 class SecondaryProperties:
     """This class calculates the 2nd degree polynomial curve fit for various
@@ -28,29 +29,23 @@ class SecondaryProperties:
     def specific_heat_capacity(self):
         # Specific Heat Capacity [J/kg-K]
         return self.tol.Cp
-    def prandtl_number(self):
-        # Prandtl Number
-        return self.tol.Pr
 
     def calc_fit(self, property):
         functions = {'k': self.thermal_conductivity,
                      'mu' : self.kinematic_viscosity,
                      'rho' : self.rho,
-                     'Cp' : self.specific_heat_capacity,
-                     'Pr' : self.prandtl_number}
- 
+                     'Cp' : self.specific_heat_capacity
+                    }
         prop_val = []
         for temp in self.T_range:
             self.tol.calculate(T=temp, P=self.P)
             
             prop_val.append(functions[property]())
         
-        res = polyfit(self.T_range, prop_val, 2, full=True)
+        res = polyfit(self.T_range, prop_val, 1, full=True)
         print("The fitted curve:")
-        print("p(T) = {0}*T**2 + {1}*T + {2}".format(res[0][0], 
-                                                     res[0][1], 
-                                                     res[0][2]))
-        print("Redsiduals")
+        print("p(T) = {0}*T + {1}".format(res[0][0], res[0][1]))
+        print("Residuals")
         print(res[3])
 
 if __name__=='__main__':
