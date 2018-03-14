@@ -6,7 +6,9 @@ def get_XS_list():
     XSs = []
     with open('needed_xs.txt', 'r') as fp:
         for line in fp:
-            XSs.append(line.split()[0])
+            xs_ID = line.split()[0]
+            if xs_ID not in XSs:
+                XSs.append(xs_ID)
     fp.close()
 
     return XSs
