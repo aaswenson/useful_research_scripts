@@ -81,7 +81,7 @@ if __name__=="__main__":
     # (optional)
     # Set the full path to `nuc_data.h5` with the filename included
     parser.add_argument("-filename", type=str,
-                        default="/home/alex/.local/lib/python2.7/\
+                        default="/home/alex/.local/lib/python3.5/\
 site-packages/pyne/nuc_data.h5", help="filename nuc_data.h5 with its full path")
     args = parser.parse_args()
 
