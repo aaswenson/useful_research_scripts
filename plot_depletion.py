@@ -60,7 +60,7 @@ def plot_results(keff, rel_err, ind_vars):
         axes.errorbar(ind, keff, yerr=err, fmt='s', markersize=2,
                       color='blue', capsize=4)
 
-    fig.savefig('depletion_results.eps', format='eps', dpi=2000)
+    fig.savefig('depletion_results.png', format='png', dpi=500)
     
 
 
